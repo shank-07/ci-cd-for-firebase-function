@@ -27,9 +27,6 @@ jobs:
       - name: Install Newman dependency
         run: npm install --prefix tests/postman/
 
-      - name: Download Artifact
-        uses: actions/download-artifact@master
-
       - name: list directory
         run: ls
 
