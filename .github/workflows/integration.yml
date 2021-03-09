@@ -1,0 +1,25 @@
+name: FIREBASE INTEGRATION AND TESTING FIREBASE API
+
+on:
+  push: [main]
+  pull_request: [main]
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Install Newman dependency
+        run: npm install --prefix tests/postman/
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Initialise Firebase library
+        uses: w9jds/firebase-action@master
+        with:
+          args: emulators:start
+      - name: Run the API and Postman's tests
+        run: |
+          cd test && newman run ci-cd-firebase-api.postman_collection.json
+          cd test && ./node_modules/newman/bin/newman.js run ci-cd-firebase-api.postman_collection.json
