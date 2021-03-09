@@ -36,12 +36,10 @@ jobs:
       - name: Install dependency
         run: cd functions && npm install
 
-      - name: start firebase server
-        run: firebase emulators:start
-
-      - name: Run the API and Postman's tests
+      - name: Start Firebase Server Run the API and Postman's tests
         run: |
-          sleep 2
+          firebase emulators:start
+          sleep 10
           cd test && newman run ci-cd-firebase-api.postman_collection.json
           cd test && ./node_modules/newman/bin/newman.js run ci-cd-firebase-api.postman_collection.json
           kill -9 `lsof -i:5001qq -t`
