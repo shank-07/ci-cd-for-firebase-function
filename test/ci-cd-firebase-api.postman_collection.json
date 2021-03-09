@@ -6,16 +6,70 @@
 	},
 	"item": [
 		{
-			"name": "New Request",
+			"name": "p1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code should be 200 status = SUCCESS \", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code should be 200 \", function () {\r",
 							"    const response = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.globals.set(\"number\", response.number);\r",
 							"    pm.expect(response.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"number\" : 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/fir-api-ci-cd/us-central1/set",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"fir-api-ci-cd",
+						"us-central1",
+						"set"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "p2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200 \", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(response.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result should be multiplied\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.result).to.eql(pm.globals.get(\"number\") * pm.globals.get(\"number\"));\r",
+							"    pm.globals.set(\"number\", response.result);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -23,19 +77,79 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"{{number}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "http://localhost:5000/fir-api-ci-cd/us-central1/dummyfunction",
+					"raw": "http://localhost:5001/fir-api-ci-cd/us-central1/mul",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5000",
+					"port": "5001",
 					"path": [
 						"fir-api-ci-cd",
 						"us-central1",
-						"dummyfunction"
+						"mul"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "p3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code should be 200 status = SUCCESS \", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(response.status).to.eql(\"SUCCESS\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Result should be divided\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"    pm.expect(response.result).to.eql(1);\r",
+							"    pm.globals.set(\"number\", response.result);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"{{number}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/fir-api-ci-cd/us-central1/div",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"fir-api-ci-cd",
+						"us-central1",
+						"div"
 					]
 				}
 			},
