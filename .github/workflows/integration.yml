@@ -42,4 +42,4 @@ jobs:
           sleep 10
           cd test && newman run ci-cd-firebase-api.postman_collection.json
           cd test && ./node_modules/newman/bin/newman.js run ci-cd-firebase-api.postman_collection.json
-          kill -9 `lsof -i:5001qq -t`
+          kill -9 `lsof -i:5001 -t`
