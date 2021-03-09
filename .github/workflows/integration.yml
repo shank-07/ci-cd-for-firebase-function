@@ -19,6 +19,8 @@ jobs:
         uses: actions/download-artifact@master
       - name: Install Newman dependency
         run: npm install --prefix tests/postman/
+      - name: list dir
+        run: ls
       - name: Install dependency
         run: cd functions && npm install 
       - name: Checkout Repo
