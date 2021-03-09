@@ -38,3 +38,5 @@ jobs:
           firebase emulators:start &
           sleep 10
           cd test && newman run ci-cd-firebase-api.postman_collection.json
+
+
