@@ -7,7 +7,8 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "api-test": "cd ../test && newman run ci-cd-firebase-api.postman_collection.json"
   },
   "engines": {
     "node": "12"
