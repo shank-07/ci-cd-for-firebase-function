@@ -14,8 +14,7 @@ exports.dummyfunction1 = functions.https.onRequest((request, response) => {
   response.status(200).json({
       status:  "SUCCESS",
       message : "this is cloud function 1",
-      msg: "req_2"
-
+      msg: "req_1"
   });
   return;
 });

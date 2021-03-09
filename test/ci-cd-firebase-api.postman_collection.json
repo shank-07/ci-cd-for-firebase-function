@@ -64,7 +64,7 @@
 							"    pm.environment.set(data, \"this is something\");\r",
 							"    const response = pm.response.json();\r",
 							"    pm.expect(response.status).to.eql(\"SUCCESS\");\r",
-							"    pm.expect(response.MSG).to.eql(\"req_2\");\r",
+							"    pm.expect(response.msg).to.eql(\"req_2\");\r",
 							"\r",
 							"});"
 						],
@@ -85,7 +85,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5001/fir-api-ci-cd/us-central1/dummyfunction1",
+					"raw": "http://localhost:5001/fir-api-ci-cd/us-central1/dummyfunction2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -94,7 +94,7 @@
 					"path": [
 						"fir-api-ci-cd",
 						"us-central1",
-						"dummyfunction1"
+						"dummyfunction2"
 					]
 				}
 			},
