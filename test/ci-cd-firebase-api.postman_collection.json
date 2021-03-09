@@ -13,7 +13,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status code should be 200 status = SUCCESS \", function () {\r",
-							"    pm.response.to.have.status(201);\r",
+							"    pm.response.to.have.status(200);\r",
 							"    const response = pm.response.json();\r",
 							"    pm.expect(response.status).to.eql(\"SUCCESS\");\r",
 							"});"
