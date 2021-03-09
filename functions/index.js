@@ -1,36 +1,56 @@
 const functions = require("firebase-functions");
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-exports.dummyfunction1 = functions.https.onRequest((request, response) => {
+
+exports.set = functions.https.onRequest((request, response) => {
   functions.logger.info("Dummy Function 1", {structuredData: true});
 
-  const {data1, data2 } = request.body;
+  //  get number
+  const number = request.body.number;
 
-  console.log(data1);
-  console.log(data2);
 
   response.status(200).json({
       status:  "SUCCESS",
-      message : "this is cloud function 1",
-      msg: "req_1"
+      number : number,
+      msg: "f1",
+      result : number
+
   });
   return;
 });
 
-exports.dummyfunction2 = functions.https.onRequest((request, response) => {
+exports.mul = functions.https.onRequest((request, response) => {
   functions.logger.info("Dummy Function 2", {structuredData: true});
 
-  const {data1, data2 } = request.body;
+  //  multiple number
+  const number = request.body.number;
 
-  console.log(data1);
-  console.log(data2);
+  let result = number * number;
+  console.log(result);
 
   response.status(200).json({
       status:  "SUCCESS",
-      message : "this is cloud function 2",
-      msg: "req_2"
+      number : number,
+      msg: "f2",
+      result : result
   });
   return;
+});
+
+exports.div = functions.https.onRequest((request, response) => {
+  functions.logger.info("Dummy Function 3", {structuredData: true});
+
+  //  divide number
+  const number = request.body.number;
+
+  let result = number / number;
+
+
+  response.status(200).json({
+      status:  "SUCCESS",
+      number : number,
+      msg: "f3",
+      result : result
+  });
+  return;
+
 });
