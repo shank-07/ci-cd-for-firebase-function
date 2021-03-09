@@ -38,7 +38,7 @@ jobs:
 
       - name: Start Firebase Server Run the API and Postman's tests
         run: |
-          firebase emulators:start
+          firebase emulators:start &
           sleep 10
           cd test && newman run ci-cd-firebase-api.postman_collection.json
           cd test && ./node_modules/newman/bin/newman.js run ci-cd-firebase-api.postman_collection.json
