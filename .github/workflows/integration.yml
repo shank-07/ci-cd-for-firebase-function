@@ -38,5 +38,6 @@ jobs:
 
       - name: Run the API and Postman's tests
         run: |
+          sleep 2
           cd test && newman run ci-cd-firebase-api.postman_collection.json
           cd test && ./node_modules/newman/bin/newman.js run ci-cd-firebase-api.postman_collection.json
