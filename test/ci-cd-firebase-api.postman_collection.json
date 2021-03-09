@@ -26,12 +26,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5001/fir-api-ci-cd/us-central1/dummyfunction",
+					"raw": "http://localhost:5000/fir-api-ci-cd/us-central1/dummyfunction",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "5001",
+					"port": "5000",
 					"path": [
 						"fir-api-ci-cd",
 						"us-central1",
