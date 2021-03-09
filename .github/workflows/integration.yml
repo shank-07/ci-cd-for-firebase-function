@@ -1,0 +1,42 @@
+name: FIREBASE INTEGRATION AND TESTING FIREBASE API
+
+on:
+  push: 
+    branches : [ main ]
+  pull_request:
+    branches : [ main ]
+
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Install firebase cli tools
+        run: npm install -g firebase-tools
+      
+      - name: Install Newman dependency
+        run: npm install --prefix tests/postman/
+
+      - name: list directory
+        run: ls
+
+      - name: Install dependency
+        run: cd functions && npm install
+
+      - name: Start Firebase Server Run the API and Postman's tests
+        run: |
+          firebase emulators:start &
+          sleep 10
+          cd test && newman run ci-cd-firebase-api.postman_collection.json
+
+
